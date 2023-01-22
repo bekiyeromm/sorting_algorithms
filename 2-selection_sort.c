@@ -1,5 +1,5 @@
 #include"sort.h"
-/*void swap(int *a, int *b);*/
+void swap(int *a, int *b);
 /**
  * selection_sort - sorts an element in acending order
  * @array: array to be sorted
@@ -36,7 +36,7 @@ void selection_sort(int *array, size_t size)
  */
 void swap(int *a, int *b)
 {
-	int temp;
+	size_t temp;
 
 	temp = *a;
 	*a = *b;
