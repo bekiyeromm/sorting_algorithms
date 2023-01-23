@@ -20,14 +20,15 @@ void bubble_sort(int *array, size_t size)
 				print_array(array, size);
 			}
 }
-/**                                                                                                    
- * swap - swap value of two integer pointers                                                           
- * @a: first index int pointer                                                                         
- * @b: first index +1 int pointer                                                                      
- */                                                                                                    
-void swap(int *a, int *b)                                                                              
+/**
+ * swap - swaps the value of two variable
+ * @a: first number to be swaped
+ * @b: second number to be swaped
+ */
+void swap(int *a, int *b)
 {
 	int temp;
+
 	temp = *a;
 	*a = *b;
 	*b = temp;
