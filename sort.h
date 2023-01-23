@@ -28,7 +28,7 @@ void selection_sort(int *array, size_t size);
 listint_t *swap_node(listint_t *node, listint_t **list);
 /*quick sort*/
 void quick_sort(int *array, size_t size);
-void q_sorting(int *array, int low, int high, size_t size);
-int do_partition(int *array, int low, int high, size_t size);
+int partition(int *array, int low, int high, size_t size);
+void sort(int *array, int low, int high, size_t size);
 
 #endif
