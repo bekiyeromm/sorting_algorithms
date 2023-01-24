@@ -36,6 +36,8 @@ void quick_sort_recursion(int *arr, int low, int high, int size);
 void shell_sort(int *array, size_t size);
 /*cocktail shake*/
 void cocktail_sort_list(listint_t **list);
+void move_left(listint_t *curr, listint_t *prev, listint_t **head);
+
 /*counting sort*/
 void counting_sort(int *array, size_t size);
 /*merge sort*/
