@@ -5,8 +5,8 @@
  *
  * @array: pointer to array
  * @size: size of the array
- * @l: pointer to left array
- * @r: pointer to right array
+ * @left: pointer to left array
+ * @right: pointer to right array
  **/
 void merge(int *array, int *left, int *right, size_t size)
 {
