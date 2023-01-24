@@ -42,8 +42,12 @@ void move_left(listint_t *curr, listint_t *prev, listint_t **head);
 void counting_sort(int *array, size_t size);
 /*merge sort*/
 void merge_sort(int *array, size_t size);
+
 /*heap sort*/
 void heap_sort(int *array, size_t size);
+void make_heap(int *array, size_t size);
+void sift_down(int *array, size_t root, size_t end, size_t size);
+
 /*radix sort*/
 void radix_sort(int *array, size_t size);
 /*bitonic sort*/
