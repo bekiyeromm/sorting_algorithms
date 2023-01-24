@@ -28,8 +28,9 @@ void selection_sort(int *array, size_t size);
 listint_t *swap_node(listint_t *node, listint_t **list);
 /*quick sort*/
 void quick_sort(int *array, size_t size);
-void quicksort(int *array, ssize_t min, ssize_t max, size_t size);
-size_t partition(int *array, ssize_t min, ssize_t max, size_t size);
+void swape(int array[], int size, int *a, int *b);
+int partitioned(int array[], int low, int high, int size);
+void quick_sort_recursion(int *arr, int low, int high, int size);
 
 /*shel sort*/
 void shell_sort(int *array, size_t size);
