@@ -48,14 +48,11 @@ void merge(int *array, int *left, int *right, size_t size)
  **/
 void merge_sort(int *array, size_t size)
 {
-	size_t mid = 0, i;
+	size_t mid, i;
 	int left[100];
 	int right[100];
 
-	if (!array)
-		return;
-
-	if (size < 2)
+	if (!array || size < 2)
 		return;
 
 	mid = (size / 2);
