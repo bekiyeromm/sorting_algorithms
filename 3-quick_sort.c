@@ -1,70 +1,66 @@
 #include "sort.h"
-
 /**
- * quick_sort - sort array using quick sort method
- * @array: the array
- * @size: the size
- */
+ * quick_sort_rec - sorts an array of integers in ascending order using
+ * the Selection sort algorithm using recursion
+ * @array: pointer to array
+ * @size: size of the array
+ * @array_init: initial pointer to array
+ * @size_init: initial size of the array
+ **/
+void quick_sort_rec(int *array_init, size_t size_init, int *array, size_t size)
+{
+	size_t j, aux;
+	int aux2;
+	int i = -1, n, pivot = array[size - 1];
+
+	if (array && size > 1)
+	{
+		for (j = 0; j < size - 1; j++)
+		{
+			if (array[j] < pivot)
+			{
+				i++;
+				aux = i;
+				if (aux != j && array[j] != array[aux])
+				{
+					n = array[j];
+					array[j] = array[i];
+					array[i] = n;
+					print_array(array_init, size_init);
+				}
+			}
+
+
+		}
+		aux2 = size;
+		if (aux2 - 1 != i + 1 && array[aux2 - 1] != array[i + 1])
+		{
+			array[size - 1] = array[i + 1];
+			array[i + 1] = pivot;
+			print_array(array_init, size_init);
+		}
+		if (i > 0)
+		{
+			quick_sort_rec(array_init, size_init, array, i + 1);
+		}
+		quick_sort_rec(array_init, size_init, array + i + 2,  size - (i + 2));
+	}
+}
+/**
+ * quick_sort - sorts an array of integers in ascending order using
+ * the quick sort algorithm
+ * @array: pointer to array
+ * @size: size of the array
+**/
 void quick_sort(int *array, size_t size)
 {
-	sort(array, 0, size - 1, size);
-}
+	int *array_init;
+	size_t size_init;
 
-/**
- * sort - recursive sort function
- * @array: the array
- * @size: the size
- * @low: the low limit
- * @high: the hish limit
- */
-void sort(int *array, int low, int high, size_t size)
-{
-	int pivot;
-
-	if (low < high)
+	if (array)
 	{
-		pivot = partition(array, low, high, size);
-		sort(array, low, pivot - 1, size);
-		sort(array, pivot + 1, high, size);
+		array_init = array;
+		size_init = size;
+		quick_sort_rec(array_init, size_init, array, size);
 	}
-}
-
-/**
- * partition - partition and order the array
- * @array: the array
- * @size: the size
- * @low: the low limit
- * @high: the hish limit
- * Return: return the position of i (the new pivot)
- */
-int partition(int *array, int low, int high, size_t size)
-{
-	int pivot, i, j, temp;
-
-	pivot = array[high];
-
-	i = low - 1;
-	for (j = low; j < high; j++)
-	{
-		if (array[j] <= pivot)
-		{
-			i++;
-			if (i != j)
-			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-				print_array(array, size);
-			}
-		}
-	}
-	i++;
-	if (i != j)
-	{
-		temp = array[i];
-		array[i] = array[high];
-		array[high] = temp;
-		print_array(array, size);
-	}
-	return (i);
 }
