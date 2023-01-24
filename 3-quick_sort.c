@@ -1,66 +1,72 @@
 #include "sort.h"
 /**
- * quick_sort_rec - sorts an array of integers in ascending order using
- * the Selection sort algorithm using recursion
- * @array: pointer to array
- * @size: size of the array
- * @array_init: initial pointer to array
- * @size_init: initial size of the array
- **/
-void quick_sort_rec(int *array_init, size_t size_init, int *array, size_t size)
+ * partition - sort an array of integers using quick_sort
+ * lomuto implementation with pivot in last element of partition
+ * @array: array to sort
+ * @min: minimum value
+ * @max: max value
+ * @size: the size of the array to sort
+ * Return: index + 1
+ */
+size_t partition(int *array, ssize_t min, ssize_t max, size_t size)
 {
-	size_t j, aux;
-	int aux2;
-	int i = -1, n, pivot = array[size - 1];
+	ssize_t i, j;
+	int swap, pivot;
 
-	if (array && size > 1)
+	pivot = array[max];
+	i = min - 1;
+	for (j = min; j < max; j++)
 	{
-		for (j = 0; j < size - 1; j++)
+		if (array[j] < pivot)
 		{
-			if (array[j] < pivot)
+			i++;
+			if (i != j)
 			{
-				i++;
-				aux = i;
-				if (aux != j && array[j] != array[aux])
-				{
-					n = array[j];
-					array[j] = array[i];
-					array[i] = n;
-					print_array(array_init, size_init);
-				}
+				swap = array[i];
+				array[i] = array[j];
+				array[j] = swap;
+				print_array(array, size);
 			}
+		}
+	}
+	if (array[max] < array[i + 1])
+	{
+		swap = array[i + 1];
+		array[i + 1] = array[max];
+		array[max] = swap;
+		print_array(array, size);
+	}
+	return (i + 1);
+}
 
+/**
+* quicksort - sorts an array (a partition recursively)
+* @array: array to be sorted
+* @min: min index of the partition
+* @max: max index of the partition
+* @size: array size
+*/
+void quicksort(int *array, ssize_t min, ssize_t max, size_t size)
+{
+	ssize_t pivot;
 
-		}
-		aux2 = size;
-		if (aux2 - 1 != i + 1 && array[aux2 - 1] != array[i + 1])
-		{
-			array[size - 1] = array[i + 1];
-			array[i + 1] = pivot;
-			print_array(array_init, size_init);
-		}
-		if (i > 0)
-		{
-			quick_sort_rec(array_init, size_init, array, i + 1);
-		}
-		quick_sort_rec(array_init, size_init, array + i + 2,  size - (i + 2));
+	if (min < max)
+	{
+		pivot = partition(array, min, max, size);
+		quicksort(array, min, pivot - 1, size);
+		quicksort(array, pivot + 1, max, size);
+
 	}
 }
+
 /**
- * quick_sort - sorts an array of integers in ascending order using
- * the quick sort algorithm
- * @array: pointer to array
- * @size: size of the array
-**/
+* quick_sort - sorts an array with quick sort algo
+* @array: The array to be sorted
+* @size: The size of the array to be sorted
+*/
 void quick_sort(int *array, size_t size)
 {
-	int *array_init;
-	size_t size_init;
-
-	if (array)
-	{
-		array_init = array;
-		size_init = size;
-		quick_sort_rec(array_init, size_init, array, size);
-	}
+	if (array == NULL || size < 2)
+		return;
+	quicksort(array, 0, size - 1, size);
 }
